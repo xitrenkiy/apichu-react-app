@@ -1,25 +1,21 @@
 import { useState } from 'react';
+
+import AppHeader from '../appHeader/appHeader';
+import DecorativeTabs from '../decorativeTabs/decorativeTabs';
+import RandomPikachu from '../randomPikachu/randomPikachu';
+
 import './App.sass';
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+	return (
+	<>
+		<AppHeader />
+		<DecorativeTabs />
+		<RandomPikachu />
+	</>
+	)
 }
 
 export default App
