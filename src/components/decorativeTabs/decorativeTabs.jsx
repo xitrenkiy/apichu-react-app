@@ -1,6 +1,8 @@
+
+
 import './decorativeTabs.sass';
 
-const DecorativeTabs = () => {
+const DecorativeTabs = ({ onButtonClick }) => {
 	return (
 		<div className="tabs-wrapper">
 			<svg className="decorative-line" viewBox="0 0 100 20" preserveAspectRatio="none">
@@ -19,8 +21,8 @@ const DecorativeTabs = () => {
 			</svg>
 
 			<div className="tabs">
-				<button className="tab">Random</button>
-				<button className="tab">Gallery</button>
+				<button className="tab" onClick={() => onButtonClick('random')}>Random</button>
+				<button className="tab" onClick={() => onButtonClick('gallery')}>Gallery</button>
 			</div>
 		</div>
 	)

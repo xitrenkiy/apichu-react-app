@@ -1,0 +1,110 @@
+.pokemon__info
+	display: flex
+	gap: 30px
+	background: #fdf6e3
+	padding: 20px
+	border-radius: 16px
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1)
+	max-width: 900px
+	margin: 75px auto
+	min-height: 500px
+	animation: fadeInUp 0.6s ease forwards
+	opacity: 0
+	transform: translateY(20px)
+
+	img
+		width: 300px
+		height: 300px
+		object-fit: contain
+		border-radius: 12px
+		background: #fff
+		padding: 10px
+		box-shadow: 0 0 8px rgba(0, 0, 0, 0.05)
+
+	.pokemon__data
+		flex: 1
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+
+	h1
+		font-size: 32px
+		color: #222
+		margin-bottom: 10px
+
+	p
+		font-size: 16px
+		color: #444
+		line-height: 1.5
+		margin-bottom: 20px
+
+.pokemon__types-wrapper
+	margin-top: 20px
+
+	h3
+		margin-bottom: 10px
+		color: #333
+
+.pokemon__types
+	display: flex
+	flex-wrap: wrap
+	gap: 10px
+	padding: 0
+	margin: 0
+
+	li
+		background: #81c784
+		color: #fff
+		padding: 6px 12px
+		border-radius: 20px
+		font-size: 14px
+		font-weight: 500
+		list-style: none
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1)
+		text-transform: capitalize
+
+.pokemon__physical
+	display: flex
+	gap: 20px
+	font-size: 16px
+	font-weight: 500
+	color: #444
+	margin-bottom: 20px
+
+.pokemon__again
+	margin: 20px auto
+	display: block
+	background: #ffcb05
+	color: #2a75bb
+	font-weight: bold
+	border: 2px solid #2a75bb
+	border-radius: 50px
+	cursor: pointer
+	font-size: 16px
+	transition: all 0.3s ease
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2)
+
+	&:hover
+		background: #2a75bb
+		color: #fff
+		transform: scale(1.05)
+		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25)
+
+	&:active
+		transform: scale(0.95)
+
+.pokemon__rarity
+	margin-top: 10px
+	padding: 6px 12px
+	border: 1px solid #ffd700
+	border-radius: 12px
+	display: inline-block
+	background-color: rgba(255, 215, 0, 0.1)
+	font-weight: bold
+	color: #ffd700
+	box-shadow: 0 0 8px rgba(255, 215, 0, 0.3)
+
+@keyframes fadeInUp
+	to
+		opacity: 1
+		transform: translateY(0)
