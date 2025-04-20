@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import usePikachuService from '../../service/PikachuService';
 import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
@@ -14,9 +15,9 @@ const Gallery = () => {
 		updatePokemon()
 	}, [currentPokemon]);
 
-	const handleClickBtn = (i) => {
-		setCurrentPokemon(num => num + i)
-	}
+	const handleClickBtn = useCallback((i) => {
+		setCurrentPokemon(num => num + i);
+	}, []);
 
 	const onPikachuLoad = (pokemon) => {
 		setPokemon(pokemon);
@@ -53,15 +54,15 @@ const Gallery = () => {
 }
 
 const View = ({ pikachu }) => {
-	const { photo, name } = pikachu;
+	const { id, photo, name } = pikachu;
 
 	return (
-		<div className="gallery__view fade-in">
+		<div className="gallery__view fade-in" key={id}>
 			<h1 className="gallery__name">{name}</h1>
 			<img src={photo} alt={name} className="gallery__image" />
-			<button className="gallery__learn-more">
+			<Link className="gallery__learn-more" to={`/gallery/${id}`}>
 				Learn more
-			</button>
+			</Link>
 		</div>
 	)
 }

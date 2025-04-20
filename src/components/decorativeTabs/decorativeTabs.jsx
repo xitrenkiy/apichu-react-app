@@ -1,8 +1,8 @@
-
+import { NavLink } from 'react-router-dom'
 
 import './decorativeTabs.sass';
 
-const DecorativeTabs = ({ onButtonClick }) => {
+const DecorativeTabs = () => {
 	return (
 		<div className="tabs-wrapper">
 			<svg className="decorative-line" viewBox="0 0 100 20" preserveAspectRatio="none">
@@ -21,8 +21,23 @@ const DecorativeTabs = ({ onButtonClick }) => {
 			</svg>
 
 			<div className="tabs">
-				<button className="tab" onClick={() => onButtonClick('random')}>Random</button>
-				<button className="tab" onClick={() => onButtonClick('gallery')}>Gallery</button>
+				<NavLink 
+					end 
+					to='/' 
+					className="tab"
+					style={({ isActive }) => ({backgroundColor: isActive ? '#DAA520' : '#FFD700',
+											   transition: '.2s all',
+											   boxShadow: isActive ? 'inset 0 2px 4px rgba(0, 0, 0, 0.3)' : '0 4px 6px rgba(0, 0, 0, 0.1)',
+											   transform: isActive ? 'translateY(2px)' : 'translateY(0)'})}
+					>Random</NavLink>
+				<NavLink 
+					to='/gallery' 
+					className="tab"
+					style={({ isActive }) => ({backgroundColor: isActive ? '#DAA520' : '#FFD700',
+											   transition: '.2s all',
+											   boxShadow: isActive ? 'inset 0 2px 4px rgba(0, 0, 0, 0.3)' : '0 4px 6px rgba(0, 0, 0, 0.1)',
+											   transform: isActive ? 'translateY(2px)' : 'translateY(0)'})}
+					>Gallery</NavLink>
 			</div>
 		</div>
 	)

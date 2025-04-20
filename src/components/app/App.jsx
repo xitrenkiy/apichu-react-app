@@ -1,31 +1,34 @@
-import { useState } from 'react';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import AppHeader from '../appHeader/appHeader';
 import DecorativeTabs from '../decorativeTabs/decorativeTabs';
-import RandomPikachu from '../randomPikachu/randomPikachu';
-import Gallery from '../gallery/gallery';
-import MainPage from '../pages/MainPage';
+import Spinner from '../spinner/spinner';
+import { MainPage } from '../pages';
+
+const GalleryPage = lazy(() => import('../pages/GalleryPage'));
+const Page404 = lazy(() => import('../pages/404'));
+const SinglePikachuPage = lazy(() => import('../pages/SinglePikachuPage'));
 
 import './App.sass';
 
 function App() {
-	const [buttonClicked, setButtonClicked] = useState('gallery');
-
-	const views = {
-		random: <RandomPikachu />,
-		gallery: <Gallery />
-	}
-
-	const handleButtonClick = (name) => {
-		setButtonClicked(name)
-	}
-
 	return (
-	<>
-		<AppHeader />
-		<DecorativeTabs onButtonClick={handleButtonClick}/>
-		{views[buttonClicked]}
-	</>
+		<Router>
+			<AppHeader />
+			<DecorativeTabs />
+			<main>
+				<Suspense fallback={<Spinner />}>
+					<Routes>
+						<Route path='/' element={<MainPage />} />
+						<Route path='/gallery' element={<GalleryPage />} />
+						<Route path='/gallery/:pokeId' element={<SinglePikachuPage />} />
+						<Route path='*' element={<Page404 />} />
+					</Routes>
+				</Suspense>
+				
+			</main>
+		</Router>
 	)
 }
 

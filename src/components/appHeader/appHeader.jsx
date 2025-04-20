@@ -1,8 +1,7 @@
-import './appHeader.sass';
-import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
+import './appHeader.sass';
 import logo from '../../assets/logo92.png';
-import usePikachuService from '../../service/PikachuService';
 
 const AppHeader = () => {
 
@@ -12,8 +11,16 @@ const AppHeader = () => {
 				<img src={logo} alt="APIchu logo" />
 			</div>
 			<nav className="header__navigation">
-				<a href="#">Solo Pikachu..</a>
-				<a href="#">A lot of Pikachu..</a>
+				<NavLink 
+					to='/'
+					style={({ isActive }) => ({color: isActive ? '#fdd835' : '#6A5ACD', fontSize: '20px'})}
+					>
+					Solo Pikachu..
+				</NavLink>
+				<NavLink 
+					to='/sass'
+					style={({ isActive }) => ({color: isActive ? '#fdd835' : '#6A5ACD', fontSize: '20px'})}
+					>A lot of Pikachu..</NavLink>
 			</nav>
 			<div className="header__search">
 				<input type="text" placeholder='Pika...' />

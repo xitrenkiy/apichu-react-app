@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import usePikachuService from '../../service/PikachuService';
 
 import Spinner from '../spinner/spinner';
@@ -134,6 +135,7 @@ const View = ({ pokemon, descr, onClickButton }) => {
 						{typeList}
 					</div>
 				</div>
+				<Link to={`/gallery/${id}`}>XUY</Link>
 			</div>
 			<button className="pokemon__again" onClick={onClickButton}>
 				Throw Pokéball!
