@@ -2,13 +2,13 @@ table
 	width: 200px
 	border-collapse: collapse
 	margin-top: 20px
-	background: #fff9c4 // мягкий желтый, как Пикачу 🐭
+	background: #fff9c4
 	border-radius: 12px
 	overflow: hidden
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)
 
 thead
-	background-color: #fbc02d // яркий жёлтый
+	background-color: #fbc02d
 	color: #212121
 	font-weight: bold
 	text-transform: uppercase
@@ -35,3 +35,33 @@ table:hover
 .pokemon__again
 	width: 100px
 	height: 50px
+
+@keyframes fadeInUp
+	0%
+		opacity: 0
+		transform: translateY(30px)
+	100%
+		opacity: 1
+		transform: translateY(0)
+
+@keyframes glowPulse
+	0%
+		box-shadow: 0 0 0 rgba(255, 99, 132, 0.2)
+	50%
+		box-shadow: 0 0 16px rgba(255, 99, 132, 0.6)
+	100%
+		box-shadow: 0 0 0 rgba(255, 99, 132, 0.2)
+
+.pokemon__stats-wrapper
+	margin: 0.5rem
+	padding: 1.5rem
+	background-color: rgba(255, 99, 132, 0.05)
+	border: 2px solid rgba(255, 99, 132, 0.2)
+	border-radius: 20px
+	max-width: 600px
+	animation: fadeInUp 0.6s ease-out, glowPulse 2.5s ease-in-out infinite
+	transition: box-shadow 0.3s ease
+
+.pokemon__stats-wrapper canvas
+	max-width: 100%
+	height: auto

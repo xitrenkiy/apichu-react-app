@@ -1,4 +1,5 @@
 .pokemon__info
+	position: relative
 	display: flex
 	gap: 30px
 	background: #fdf6e3
@@ -6,11 +7,27 @@
 	border-radius: 16px
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1)
 	max-width: 900px
-	margin: 75px auto
+	margin: 30px auto
 	min-height: 500px
 	animation: fadeInUp 0.6s ease forwards
 	opacity: 0
 	transform: translateY(20px)
+
+	.pokemon__learn-more
+		position: absolute
+		width: 80px
+		padding: 10px
+		text-align: center
+		right: 20px
+		bottom: 20px
+		text-decoration: none
+		background-color: #fff
+		border-radius: 20px
+		transition: transform .4s ease-in-out, box-shadow .4s ease-in-out
+
+		&:hover
+			transform: translateY(-5px)
+			box-shadow: 2px 5px 7px rgba(0, 0, 0, .4)
 
 	img
 		width: 300px

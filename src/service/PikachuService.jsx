@@ -11,6 +11,10 @@ const usePikachuService = () => {
 		return str.find(entry => entry.language.name === 'en');
 	}
 
+	const toUpper = (str) => {
+		return str.charAt(0).toUpperCase() + str.slice(1);
+	}
+
 	const getPikachu = async (id) => {
 		const response = await request(`${_baseApi}pokemon/${id}`);
 		return _transformPikachu(response);
@@ -26,10 +30,15 @@ const usePikachuService = () => {
 		return _transformAbilities(response);
 	}
 
+	const getTypes = async (name) => {
+		const response = await request(`${_baseApi}type/${name}`);
+		return _transformType(response);
+	}
+
 	const _transformPikachu = (char) => {
 		return {
 			id: char.id,
-			name: char.name.charAt(0).toUpperCase() + char.name.slice(1),
+			name: toUpper(char.name),
 			height: char.height,
 			weight: char.weight,
 			photo: char.sprites.other.home.front_default ? char.sprites.other.home.front_default : fallbackUrl,
@@ -37,7 +46,8 @@ const usePikachuService = () => {
 			baseStats: char.stats.map(stat => ({
 				name: stat.stat.name,
 				value: stat.base_stat
-			}))
+			})),
+			abilities: char.abilities.map(item => toUpper(item.ability.name))
 		}
 	}
 
@@ -45,7 +55,7 @@ const usePikachuService = () => {
 		const entry = findEn(char.flavor_text_entries);
 
 		return {
-			description: entry ? entry.flavor_text.replace(/\f/g, '').replace(/\n/g, '\n') : 'No description about this Pokemon...',
+			description: entry ? entry.flavor_text.replace(/\f/g, '').replace(/\n/g, '\n') : 'No description for this Pokemon...',
 			captureRate: char.capture_rate >= 200 ? 'Common' 
 						: char.capture_rate >= 100 && char.capture_rate <= 199 ? 'Uncommon'
 						: char.capture_rate >= 50 && char.capture_rate <= 99 ? 'Rare'
@@ -53,7 +63,7 @@ const usePikachuService = () => {
 			baseHappiness: char.base_happiness,
 			color: char.color.name.charAt(0).toUpperCase() + char.color.name.slice(1),
 			shape: char.shape.name.charAt(0).toUpperCase() + char.shape.name.slice(1),
-			varieties: char.varieties.map(item => item.pokemon.name.charAt(0).toUpperCase() + item.pokemon.name.slice(1))
+			varieties: char.varieties.map(item => toUpper(item.pokemon.name))
 		}
 	}
 
@@ -65,11 +75,26 @@ const usePikachuService = () => {
 		return {
 			effectChanges: effectChanges ? effectChanges.effect : null,
 			effectEntries: effectEntries.effect,
-			flavorTextEntries: flavorTextEntries.flavor_text
+			flavorTextEntries: flavorTextEntries.flavor_text,
+			generation: toUpper(char.generation.name).slice(0, 11) + char.generation.name.slice(11).toUpperCase(),
+			isMainSeries: char.is_main_series,
+			pokemonCount: char.pokemon.length
 		}
 	}
 
-	return { loading, error, clearError, getPikachu, getDescription, getAbilities };
+	const _transformType = (char) => {
+		return {
+			noDamageTo: char.damage_relations.no_damage_to,
+			halfDamageTo: char.damage_relations.half_damage_to,
+			doubleDamageTo: char.damage_relations.double_damage_to,
+			noDamageFrom: char.damage_relations.no_damage_from,
+			halfDamageFrom: char.damage_relations.half_damage_from,
+			doubleDamageFrom: char.damage_relations.double_damage_from,
+			pokemonCount: char.pokemon.length
+		}
+	}
+
+	return { loading, error, clearError, getPikachu, getDescription, getAbilities, getTypes };
 }
 
 export default usePikachuService;

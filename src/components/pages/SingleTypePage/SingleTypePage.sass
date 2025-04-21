@@ -1,0 +1,85 @@
+.type
+	padding: 2rem
+	display: flex
+	justify-content: center
+
+	&__list
+		list-style: none
+		padding: 0
+		margin: 0
+		display: flex
+		flex-wrap: wrap
+		gap: 0.75rem
+		justify-content: center
+
+	&__block
+		background: linear-gradient(135deg, #fdf6e3, #ffffff)
+		padding: 2rem
+		border-radius: 20px
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1)
+		max-width: 800px
+		width: 100%
+
+	&__title
+		font-size: 2rem
+		color: #ffcb05
+		text-align: center
+		margin-bottom: 1rem
+
+	&__count
+		font-size: 1.1rem
+		color: #333
+		text-align: center
+		margin-bottom: 2rem
+
+	&__damage
+		display: flex
+		flex-wrap: wrap
+		justify-content: center
+		gap: 1.5rem
+
+	&__section
+		background-color: #fff
+		padding: 1rem
+		border-radius: 12px
+		border: 2px solid #f0f0f0
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05)
+		width: 215px
+
+	&__item
+		background-color: #fff
+		border: 2px solid #ffcb05
+		border-radius: 20px
+		padding: 0.5rem 1rem
+		transition: transform 0.2s, box-shadow 0.2s
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05)
+
+		&:hover
+			transform: translateY(-3px)
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1)
+
+	h3
+		font-size: 1.2rem
+		margin-bottom: 0.5rem
+		color: #444
+	&__link
+		text-decoration: none
+		color: #444
+		font-weight: 600
+		font-size: 1rem
+		transition: color 0.2s
+
+	&:hover
+		color: #ffcb05
+
+	&__section--no-to,
+	&__section--no-from
+		border-color: #d3d3d3
+
+	&__section--half-to,
+	&__section--half-from
+		border-color: #ffa500
+
+	&__section--double-to,
+	&__section--double-from
+		border-color: #ff6b6b

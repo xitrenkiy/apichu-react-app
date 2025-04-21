@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import usePikachuService from '../../service/PikachuService';
-import Spinner from '../spinner/spinner';
-import ErrorMessage from '../errorMessage/errorMessage';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import usePikachuService from '../../../service/PikachuService';
+import Spinner from '../../spinner/spinner';
+import ErrorMessage from '../../errorMessage/errorMessage';
 
 import './SinglePikachuPage.sass';
 
 const SinglePikachuPage = () => {
 	const { pokeId } = useParams();
-	const { loading, error, getPikachu, clearError, getAbilities, getDescription } = usePikachuService();
+	const navigate = useNavigate();
+	const { loading, error, getPikachu, clearError, getDescription } = usePikachuService();
 	const [currentPokemon, setCurrentPokemon] = useState({});
-	const [abilities, setAbilities] = useState({});
 	const [description, setDescription] = useState({});
 
 	useEffect(() => {
@@ -21,8 +21,6 @@ const SinglePikachuPage = () => {
 	const updatePokemon = (id) => {
 		getPikachu(id)
 			.then(onPokemonLoad)
-		getAbilities(id)
-			.then(onAbilityLoad)
 		getDescription(id)
 			.then(onDescriptionLoad)
 	}
@@ -31,9 +29,6 @@ const SinglePikachuPage = () => {
 		setCurrentPokemon(pokemon);
 	}
 
-	const onAbilityLoad = (pokemon) => {
-		setAbilities(pokemon);
-	}
 
 	const onDescriptionLoad = (pokemon) => {
 		setDescription(pokemon)
@@ -41,7 +36,7 @@ const SinglePikachuPage = () => {
 
 	const load = loading ? <Spinner /> : null;
 	const problem = error ? <ErrorMessage /> : null;
-	const items = !loading && !error ? <View pokemon={currentPokemon} descr={description} abilities={abilities} /> : null
+	const items = !loading && !error ? <View pokemon={currentPokemon} descr={description} navigate={navigate} /> : null
 
 	return (
 		<>
@@ -54,10 +49,9 @@ const SinglePikachuPage = () => {
 	)
 }
 
-const View = ({ pokemon, descr, abilities }) => {
-	const { name, weight, height, photo, types, baseStats } = pokemon;
+const View = ({ pokemon, descr, navigate }) => {
+	const { name, weight, height, photo, types, baseStats, abilities } = pokemon;
 	const { description, captureRate, baseHappiness, color, shape, varieties } = descr;
-	const { effectChanges, effectEntries, flavorTextEntries } = abilities;
 
 	const colorName = captureRate === 'Legendary' ? '#d62828'
 					: captureRate === 'Rare' ? '#4361ee'
@@ -94,7 +88,10 @@ const View = ({ pokemon, descr, abilities }) => {
 		return (
 			<ul className="pokemon__single-type-list">
 				{types.map((item, i) => (
-					<li className={`pokemon__single-type-item type-${item.toLowerCase()}`} key={i}>{item}</li>
+					<Link to={`/types/${item}`} 
+						className={`pokemon__single-type-item type-${item.toLowerCase()}`} 
+						key={i}>{item}
+					</Link>
 				))}
 			</ul>
 		);
@@ -109,10 +106,24 @@ const View = ({ pokemon, descr, abilities }) => {
 			</ul>
 		);
 	};
+
+	const renderAbilities = (ability) => {
+		return (
+			<ul className='pokemon__abilities'>
+				{ability.map((item, i) => (
+					<Link to={`/ability/${item}`} 
+						key={i}
+						className="pokemon__ability-link"
+						>{item}</Link>
+				))}
+			</ul>
+		)
+	}
 	
 	const stats = baseStats ? renderStats(baseStats) : null;
 	const listTypes = types ? renderTypes(types) : null;
 	const listVarieties = varieties ? renderVarieties(varieties) : null;
+	const listAbilities = abilities ? renderAbilities(abilities) : null;
 
 	return (
 		<div className="pokemon__block">
@@ -145,30 +156,10 @@ const View = ({ pokemon, descr, abilities }) => {
 
 			<div className="pokemon__abilities">
 				<h2>Abilities</h2>
-
-				{effectEntries && (
-					<div className="pokemon__abilities-block">
-						<h3>Effect Entries</h3>
-						<p className="pokemon__ability-item">{effectEntries}</p>
-					</div>
-				)}
-
-				{effectChanges && (
-					<div className="pokemon__abilities-block">
-						<h3>Effect Changes</h3>
-						<p className="pokemon__ability-item">{effectChanges}</p>
-					</div>
-				)}
-
-				{flavorTextEntries && (
-					<div className="pokemon__abilities-block">
-						<h3>Flavor Text</h3>
-						<p className="pokemon__ability-item">{flavorTextEntries}</p>
-					</div>
-				)}
+				{listAbilities}
 			</div>
 
-			<Link to="/gallery" className="pokemon__back-link">← Back to Gallery</Link>
+			<button className="pokemon__back-link" onClick={() => navigate(-1)}>← Go Back</button>
 		</div>
 	)
 }

@@ -1,0 +1,112 @@
+.ability
+	margin: 40px auto
+	max-width: 800px
+	padding: 20px
+	border-radius: 20px
+	background: #f9f9f9
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1)
+	color: #333
+	font-family: 'Segoe UI', sans-serif
+
+	&__header
+		font-size: 2rem
+		font-weight: 700
+		margin-bottom: 24px
+		text-align: center
+		color: #2c3e50
+
+	&__effect-block
+		display: grid
+		grid-template-columns: 1fr
+		gap: 16px
+
+	&__effect-changes,
+	&__effect-entries,
+	&__flavor-text,
+	&__generation,
+	&__main-series,
+	&__pokemon-counter
+		background-color: #ffffff
+		padding: 16px
+		border-radius: 12px
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05)
+		font-size: 1rem
+		line-height: 1.5
+		transition: transform 0.3s ease, box-shadow 0.3s ease
+
+		&:hover
+			transform: translateY(-5px)
+			box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15)
+
+	&__effect-changes::before
+		content: "Effect Changes:"
+		display: block
+		font-weight: bold
+		color: #2980b9
+		margin-bottom: 6px
+
+	&__effect-entries::before
+		content: "Effect Entries:"
+		display: block
+		font-weight: bold
+		color: #27ae60
+		margin-bottom: 6px
+
+	&__flavor-text::before
+		content: "Flavor Text:"
+		display: block
+		font-weight: bold
+		color: #8e44ad
+		margin-bottom: 6px
+
+	&__generation
+		text-align: center
+		font-weight: 500
+		color: #7f8c8d
+
+	&__main-series
+		text-align: center
+		font-weight: 600
+		padding: 10px
+		border-radius: 10px
+		transition: background-color 0.3s ease
+
+		&.main
+			background-color: #d1f2eb
+			color: #148f77
+
+		&.no-main
+			background-color: #f9ebea
+			color: #c0392b
+
+	&__pokemon-counter
+		text-align: center
+		font-size: 1.1rem
+		color: #34495e
+		font-weight: 500
+	
+	&__go-back
+		display: inline-flex
+		align-items: center
+		gap: 6px
+		background-color: transparent
+		border: none
+		cursor: pointer
+		margin-bottom: 20px
+		font-size: 1rem
+		color: #3a3a3a
+		text-decoration: none
+		font-weight: 500
+		transition: all 0.2s ease
+
+		&:hover
+			color: #0073e6
+			transform: translateX(-2px)
+
+		&::before
+			content: '←'
+			font-size: 1.1rem
+			transition: transform 0.2s ease
+
+		&:hover::before
+			transform: translateX(-2px)

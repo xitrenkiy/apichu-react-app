@@ -2,11 +2,31 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import usePikachuService from '../../service/PikachuService';
 
+import {
+	Chart as ChartJS,
+	CategoryScale,
+	LinearScale,
+	BarElement,
+	Title,
+	Tooltip,
+	Legend,
+  } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+
 import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
 
 import './randomPikachu.sass';
-import './pokemonInfo.sass'
+import './pokemonInfo.sass';
+
+ChartJS.register(
+	CategoryScale,
+	LinearScale,
+	BarElement,
+	Title,
+	Tooltip,
+	Legend
+);
 
 const RandomPikachu = () => {
 	const [pokemon, setPokemon]= useState({});
@@ -58,35 +78,32 @@ const View = ({ pokemon, descr, onClickButton }) => {
 	const { id, name, weight, height, photo, types, baseStats } = pokemon;
 	const { description, captureRate } = descr;
 
-	const renderStats = (arr) => {
-		const headers = arr.map((item, i) => {
-			return (
-				<th key={i}>{item.name}</th>
-			)
-		});
+	const labels = baseStats ? baseStats.map(item => item.name.charAt(0).toUpperCase() + item.name.slice(1)) : null;
+	const stats = baseStats ? baseStats.map(item => item.value) : null;
 
-		const values = arr.map((item, i) => {
-			return (
-				<td key={i}>{item.value}</td>
-			)
-		})
-
-		return (
-			<>
-				<thead>
-					<tr>
-						{headers}
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						{values}
-					</tr>
-				</tbody>
-			</>
-
-		)
+	const options = {
+		responsive: true,
+		plugins: {
+			legend: {
+				position: 'top',
+			},
+			title: {
+				display: true,
+				text: 'Pokemon Stats'
+			}
+		}
 	}
+
+	const data = {
+		labels,
+		datasets: [
+			{
+				label: 'Stat',
+				data: stats,
+				backgroundColor: 'rgba(255, 99, 132, 0.5)'
+			}
+		]
+	};
 
 	const renderTypes = (arr) => {
 		const types = arr.map((item, i) => {
@@ -102,11 +119,13 @@ const View = ({ pokemon, descr, onClickButton }) => {
 		)
 	}
 
-	const items = baseStats ? renderStats(baseStats) : null;
 	const typeList = types ? renderTypes(types) : null;
 
 	return (
 		<>
+			<button className="pokemon__again" onClick={onClickButton}>
+				Throw Pokéball!
+			</button>
 			<div className='pokemon__info'>
 				<img 
 					src={photo} 
@@ -125,21 +144,18 @@ const View = ({ pokemon, descr, onClickButton }) => {
 						<p><strong>Height:</strong> {height / 10} m</p>
 						<p><strong>Weight:</strong> {weight / 10} kg</p>
 					</div>
-		
-					<table>
-						{items}
-					</table>
+
+					<div className="pokemon__stats-wrapper">
+						<Bar options={options} data={data} />
+					</div>
 		
 					<div className="pokemon__types-wrapper">
 						<h3>Types:</h3>
 						{typeList}
 					</div>
 				</div>
-				<Link to={`/gallery/${id}`}>XUY</Link>
+				<Link to={`/gallery/${id}`} className='pokemon__learn-more'>Lear more</Link>
 			</div>
-			<button className="pokemon__again" onClick={onClickButton}>
-				Throw Pokéball!
-			</button>
 		</>
 
 	)

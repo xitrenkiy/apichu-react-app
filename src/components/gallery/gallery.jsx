@@ -31,7 +31,7 @@ const Gallery = () => {
 
 	const spinner = loading ? <Spinner /> : null;
 	const problem = error ? <ErrorMessage /> : null;
-	const items = !error && !loading ? <View pikachu={pokemon}/> : null;
+	const items = !error && !loading ? <View pikachu={pokemon} /> : null;
 
 	return (
 		<div className="gallery">
