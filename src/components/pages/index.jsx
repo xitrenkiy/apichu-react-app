@@ -4,5 +4,6 @@ import Page404 from "./404";
 import SinglePikachuPage from "./SinglePikachuPage/SinglePikachuPage";
 import SingleAbilityPage from "./SingleAbilityPage/SingleAbilityPage";
 import SingleTypePage from './SingleTypePage/SingleTypePage';
+import PikachuListPage from './PikachuListPage';
 
 export { MainPage, GalleryPage, Page404, SinglePikachuPage, SingleAbilityPage, SingleTypePage }

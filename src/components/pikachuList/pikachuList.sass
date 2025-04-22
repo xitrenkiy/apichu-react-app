@@ -1,0 +1,48 @@
+.pokemon-list__grid
+	margin-top: 1rem
+	display: grid
+	grid-template-columns: repeat(4, 1fr)
+	gap: 2rem
+	align-items: center
+	justify-items: center
+	text-align: center
+
+	&-item
+		width: 300px
+		height: 250px
+		display: flex
+		flex-direction: column
+		justify-content: center
+		align-items: center
+		text-decoration: none
+		color: #2d3436
+		background: linear-gradient(135deg, #f6e58d, #ffbe76)
+		border-radius: 35px
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.2)
+		transition: transform 0.3s ease, box-shadow 0.3s ease
+
+		&:hover
+			transform: translateY(-10px)
+			box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15), inset 0 0 15px rgba(255, 255, 255, 0.25)
+
+		img
+			object-fit: contain
+			width: 200px
+			height: 130px
+			margin: 0.5rem 0
+
+		.pokemon-list__types
+			display: flex
+			gap: 0.5rem
+			margin-top: 0.5rem
+			list-style: none
+			padding: 0
+
+			li
+				padding: 0.3rem 0.8rem
+				border-radius: 12px
+				background-color: rgba(255, 255, 255, 0.4)
+				font-weight: 600
+				font-size: 0.9rem
+				text-transform: uppercase
+				box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1)

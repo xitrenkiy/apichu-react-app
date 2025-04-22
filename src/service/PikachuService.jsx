@@ -20,6 +20,11 @@ const usePikachuService = () => {
 		return _transformPikachu(response);
 	}
 
+	const getPikachuLite = async (name) => {
+		const response = await request(`${_baseApi}pokemon/${name}`);
+		return _transformPikachuLite(response);
+	}
+
 	const getDescription = async (id) => {
 		const response = await request(`${_baseApi}pokemon-species/${id}`);
 		return _transormSpecies(response);
@@ -35,6 +40,12 @@ const usePikachuService = () => {
 		return _transformType(response);
 	}
 
+	const getAllPokemon = async (offset = _baseOffset) => {
+		const response = await request(`${_baseApi}/pokemon?limit=12&offset=${offset}`);
+		const result = Promise.all(response.results.map(item => getPikachuLite(item.name)));''
+		return result;
+	}
+	
 	const _transformPikachu = (char) => {
 		return {
 			id: char.id,
@@ -48,6 +59,15 @@ const usePikachuService = () => {
 				value: stat.base_stat
 			})),
 			abilities: char.abilities.map(item => toUpper(item.ability.name))
+		}
+	}
+
+	const _transformPikachuLite = (char) => {
+		return {
+			id: char.id,
+			name: toUpper(char.name),
+			photo: char.sprites.other.home.front_default ? char.sprites.other.home.front_default : fallbackUrl,
+			types: char.types.map(item => item.type.name)
 		}
 	}
 
@@ -94,7 +114,7 @@ const usePikachuService = () => {
 		}
 	}
 
-	return { loading, error, clearError, getPikachu, getDescription, getAbilities, getTypes };
+	return { loading, error, clearError, getPikachu, getDescription, getAbilities, getTypes, getAllPokemon };
 }
 
 export default usePikachuService;

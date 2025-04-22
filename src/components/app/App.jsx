@@ -11,6 +11,7 @@ const Page404 = lazy(() => import('../pages/404'));
 const SinglePikachuPage = lazy(() => import('../pages/SinglePikachuPage/SinglePikachuPage'));
 const SingleAbilityPage = lazy(() => import('../pages/SingleAbilityPage/SingleAbilityPage'));
 const SingleTypePage = lazy(() => import('../pages/SingleTypePage/SingleTypePage'));
+const PikachuListPage = lazy(() => import('../pages/PikachuListPage'));
 
 import './App.sass';
 
@@ -27,6 +28,7 @@ function App() {
 						<Route path='/gallery/:pokeId' element={<SinglePikachuPage />} />
 						<Route path='/ability/:abilityName' element={<SingleAbilityPage />} />
 						<Route path='/types/:typeName' element={<SingleTypePage />} />
+						<Route path='/pikachu-list' element={<PikachuListPage />} />
 						<Route path='*' element={<Page404 />} />
 					</Routes>
 				</Suspense>

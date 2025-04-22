@@ -18,7 +18,7 @@ const AppHeader = () => {
 					Solo Pikachu..
 				</NavLink>
 				<NavLink 
-					to='/sass'
+					to='/pikachu-list'
 					style={({ isActive }) => ({color: isActive ? '#fdd835' : '#6A5ACD', fontSize: '20px'})}
 					>A lot of Pikachu..</NavLink>
 			</nav>
