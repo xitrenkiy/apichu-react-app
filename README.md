@@ -11,7 +11,6 @@ Built as a training project to improve React skills and API integration.
 - 📦 Fetch data from PokeAPI using the Fetch API  
 - 🧩 Modular and reusable React components  
 - 🎨 Custom CSS styling (without Tailwind)  
-- ⚡ Responsive design for both desktop and mobile devices  
 - 🔄 Dynamic data fetching and rendering  
 
 ---
@@ -29,7 +28,7 @@ Built as a training project to improve React skills and API integration.
 ## 📷 Screenshots
 
 ![Apichu Screenshot](./public/screenshot.png)
-![Apichu Screenshot](./public/char.png)
+![Character View](./public/char.png)
 
 ---
 
@@ -50,7 +49,7 @@ npm install
 # Start the development server
 npm run dev
 
-Open your browser and go to http://localhost:5173 to see the app in action.
+Open your browser and go to http://localhost:5173 to see the app in action.```
 
 ---
 
@@ -88,6 +87,8 @@ Feel free to reach out for questions or collaborations!
 
 ## 📝 Notes
 
-- No Tailwind CSS used — all styling is handcrafted with plain CSS  
-- Focused on clean, readable code and component reusability  
-- Perfect for React beginners looking for a practical project
+❌ No Tailwind CSS used — all styling is handcrafted with plain CSS
+
+✅ Clean and readable code with reusable components
+
+🎯 Great starter project for React beginners
