@@ -1,12 +1,93 @@
-# React + Vite
+# Apichu 🧩
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React application that interacts with the [PokeAPI](https://pokeapi.co/) to fetch and display Pokémon data.  
+Built as a training project to improve React skills and API integration.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔍 Search and filter Pokémon by name  
+- 📦 Fetch data from PokeAPI using the Fetch API  
+- 🧩 Modular and reusable React components  
+- 🎨 Custom CSS styling (without Tailwind)  
+- ⚡ Responsive design for both desktop and mobile devices  
+- 🔄 Dynamic data fetching and rendering  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Technologies Used
+
+- React (with Vite)  
+- JavaScript (ES6+)  
+- Fetch API  
+- CSS3  
+- [PokeAPI](https://pokeapi.co/)  
+
+---
+
+## 📷 Screenshots
+
+![Apichu Screenshot](./public/screenshot.png)
+![Apichu Screenshot](./public/char.png)
+
+---
+
+## 💻 Installation & Setup
+
+To run this project locally, follow these steps:
+
+```bash
+# Clone the repository
+git clone https://github.com/xitrenkiy/apichu-react-app.git
+
+# Navigate into the project directory
+cd apichu-react-app
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+
+Open your browser and go to http://localhost:5173 to see the app in action.
+
+---
+
+## 🌐 Live Demo
+
+[APIchu app](https://apichu.vercel.app/)
+
+---
+
+## 🤝 Contributing
+
+Contributions are always welcome!  
+Feel free to:
+
+- Submit pull requests for bug fixes or features  
+- Open issues to report bugs or request features  
+- Suggest improvements  
+
+Please make sure to update tests as appropriate.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 📬 Contact
+
+Created by xitrenkiy  
+Feel free to reach out for questions or collaborations!
+
+---
+
+## 📝 Notes
+
+- No Tailwind CSS used — all styling is handcrafted with plain CSS  
+- Focused on clean, readable code and component reusability  
+- Perfect for React beginners looking for a practical project
